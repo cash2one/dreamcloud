@@ -1,0 +1,18 @@
+{
+  "uploadOnSave": true,
+  "useAtomicWrites": true,
+  "deleteLocal": true,
+  "hostname": "192.168.50.233",
+  "port": "22",
+  "readyTimeout": 99999,
+  "target": "/home/vagrant/Code/dreamcloud",
+  "ignore": [
+    ".remote-sync.json",
+    ".git/**",
+    "venv/**"
+  ],
+  "watch": [],
+  "transport": "scp",
+  "username": "vagrant",
+  "keyfile": "/Users/sunlongxiao/Documents/virtualbox/.vagrant/machines/default/virtualbox/private_key"
+}
