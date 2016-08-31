@@ -5,13 +5,15 @@ import os
 from flask import Flask, request, render_template
 from .config import DefaultConfig
 from .extension import db, cache, login_manager
-from .user import user
+from .user import User, user
+from .host import host
+from .frontend import frontend
 
 # For import *
 __all__ = ['create_app']
 
 DEFAULT_BLUEPRINTS = (
-    user,
+    frontend ,user, host
 )
 
 def create_app(config=None, app_name=None, blueprints=None):
@@ -23,11 +25,11 @@ def create_app(config=None, app_name=None, blueprints=None):
     if blueprints is None:
         blueprints = DEFAULT_BLUEPRINTS
 
-    app = Flask(app_name)
+    app = Flask(app_name, template_folder='cloud/templates', static_folder='cloud/static')
     configure_app(app, config)
     configure_extension(app)
     configure_blueprints(app, blueprints)
-
+    
     return app
 
 
@@ -45,8 +47,13 @@ def configure_extension(app):
     cache.init_app(app)
 
     # flask-login
-    #login_manager.login_view = 'user.index'
-    #login_manager.setup_app(app)
+    login_manager.login_view = 'frontend.index'
+
+    @login_manager.user_loader
+    def load_user(id):
+        return User.query.get(id)
+
+    login_manager.setup_app(app)
 
 def configure_blueprints(app, blueprints):
     """Configure blueprints in views."""

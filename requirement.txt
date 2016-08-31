@@ -4,5 +4,7 @@ flask-wtf
 flask-cache
 flask-login
 flask-script
+flask-migrate
 paramiko
 mysql-python
+Werkzeug

@@ -1,0 +1,4 @@
+:
+ startVM dreamvm1 FailedDomain not found: no domain with matching name 'dreamvm1':
+ startVM dreamvm2 FailedDomain not found: no domain with matching name 'dreamvm2':
+ startVM dreamvm2 FailedDomain not found: no domain with matching name 'dreamvm2'
